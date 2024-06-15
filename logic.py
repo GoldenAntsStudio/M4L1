@@ -72,6 +72,10 @@ class DatabaseManager:
 
 
     def get_users(self):
+        conn = sqlite3.connect(self.database)
+        with conn:
+            cur = conn.cursor()
+            cur.execute("SELECT * FROM users")
         return [x[0] for x in cur.fetchall()] 
         
     def get_prize_img(self, prize_id):
